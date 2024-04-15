@@ -1,5 +1,7 @@
 package com.blackout.university.models;
 
+import com.blackout.university.dto.professors.ProfessorsRegistrationDTO;
+import com.blackout.university.dto.professors.ProfessorsUpdateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -40,6 +42,16 @@ public class Professors {
         this.name = name;
         this.specialization = specialization;
         this.courses = courses;
+    }
+
+    public Professors(ProfessorsRegistrationDTO professorsRegistrationDTO){
+        this.name = professorsRegistrationDTO.name();
+        this.specialization = professorsRegistrationDTO.specialization();
+    }
+
+    public void updateProfessor(ProfessorsUpdateDTO professorsUpdateDTO){
+        if(professorsUpdateDTO.name() != null) this.name = professorsUpdateDTO.name();
+        if(professorsUpdateDTO.specialization() != null) this.specialization = professorsUpdateDTO.specialization();
     }
 
     public Long getId() {

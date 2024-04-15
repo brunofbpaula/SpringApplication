@@ -1,5 +1,7 @@
 package com.blackout.university.models;
 
+import com.blackout.university.dto.student.StudentSignUpDTO;
+import com.blackout.university.dto.student.StudentUpdateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -65,6 +67,23 @@ public class Student {
         this.address = address;
         this.languages = languages;
         this.enrollments = enrollments;
+    }
+
+    public Student(StudentSignUpDTO studentSignUpDTO) {
+        this.name = studentSignUpDTO.name();
+        this.email = studentSignUpDTO.email();
+        this.cpf = studentSignUpDTO.cpf();
+        this.birthDate = studentSignUpDTO.birthDate();
+        this.languages = studentSignUpDTO.languages();
+        this.address = studentSignUpDTO.address();
+    }
+
+    public void updateStudent(StudentUpdateDTO studentUpdateDTO) {
+        if(studentUpdateDTO.name() != null) this.name = studentUpdateDTO.name();
+        if(studentUpdateDTO.email() != null) this.email = studentUpdateDTO.email();
+        if(studentUpdateDTO.cpf() != null) this.cpf = studentUpdateDTO.cpf();
+        if(studentUpdateDTO.birthDate() != null) this.birthDate = studentUpdateDTO.birthDate();
+        if(studentUpdateDTO.languages() != null) this.languages = studentUpdateDTO.languages();
     }
 
     public Long getId() {

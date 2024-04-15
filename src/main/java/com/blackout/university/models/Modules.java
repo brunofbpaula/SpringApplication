@@ -1,5 +1,6 @@
 package com.blackout.university.models;
 
+import com.blackout.university.dto.modules.ModulesRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -40,6 +41,12 @@ public class Modules {
         this.title = title;
         this.description = description;
         this.course = course;
+    }
+
+    public Modules(ModulesRegistrationDTO modulesRegistrationDTO){
+        this.title = modulesRegistrationDTO.title();
+        this.description = modulesRegistrationDTO.description();
+        this.course = modulesRegistrationDTO.course();
     }
 
     public Long getId() {

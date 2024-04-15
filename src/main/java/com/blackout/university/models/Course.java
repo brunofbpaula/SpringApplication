@@ -1,5 +1,7 @@
 package com.blackout.university.models;
 
+import com.blackout.university.dto.course.CourseRegistrationDTO;
+import com.blackout.university.dto.course.CourseUpdateDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -72,6 +74,18 @@ public class Course {
         this.professors = professors;
         this.students = students;
         this.modules = modules;
+    }
+
+    public Course(CourseRegistrationDTO courseRegistrationDTO){
+        this.title = courseRegistrationDTO.title();
+        this.description = courseRegistrationDTO.description();
+        this.startDate = courseRegistrationDTO.startDate();
+    }
+
+    public void updateCourse(CourseUpdateDTO courseUpdateDTO){
+        if(courseUpdateDTO.title() != null) this.title = courseUpdateDTO.title();
+        if(courseUpdateDTO.description() != null) this.description = courseUpdateDTO.description();
+        if(courseUpdateDTO.startDate() != null) this.startDate = courseUpdateDTO.startDate();
     }
 
     public Long getId() {

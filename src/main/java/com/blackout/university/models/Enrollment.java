@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -33,6 +34,12 @@ public class Enrollment {
         this.id = id;
         this.student = student;
         this.course = course;
+        this.enrollmentDate = enrollmentDate;
+    }
+
+    public Enrollment(Course course, Student student, LocalDate enrollmentDate){
+        this.course = course;
+        this.student = student;
         this.enrollmentDate = enrollmentDate;
     }
 
