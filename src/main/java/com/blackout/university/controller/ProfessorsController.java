@@ -83,7 +83,7 @@ public class ProfessorsController {
                     content = @Content(schema = @Schema(implementation = Professors.class))),
             @ApiResponse(responseCode = "400", description = "Professor was not found")})
     @PutMapping("/{id}")
-    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody ProfessorsUpdateDTO professorsUpdateDTO){
+    public ResponseEntity update(@PathVariable Long id, @RequestBody ProfessorsUpdateDTO professorsUpdateDTO){
         try {
             Professors professor = professorsBusiness.updateProfessor(id, professorsUpdateDTO);
             return ResponseEntity.status(200).body(professor);
@@ -93,18 +93,18 @@ public class ProfessorsController {
         }
     }
 
-    @Operation(summary = "Deleta um professor pelo ID", responses = {
-            @ApiResponse(responseCode = "200", description = "Sucesso",
-                    content = @Content(schema = @Schema(implementation = Professor.class))),
-            @ApiResponse(responseCode = "400", description = "Professor não encontrado")})
+    @Operation(summary = "Deletes professor", responses = {
+            @ApiResponse(responseCode = "200", description = "Done",
+                    content = @Content(schema = @Schema(implementation = Professors.class))),
+            @ApiResponse(responseCode = "400", description = "Professor was not found")})
     @DeleteMapping("/{id}")
-    public ResponseEntity deletar(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id){
         try {
-            professorService.deletarProfessor(id);
+            professorsBusiness.deleteProfessor(id);
             return ResponseEntity.status(204).build();
         }catch (Exception e){
             error.setError(e.getMessage());
-            error.setObservacao("Este endpoint funciona parcialmente por conta do 'CascadeType.MERGE' solicitado na documentação.");
+            error.setDescription("You may experience some issues with this endpoint due to cascade's type being MERGE.");
             return ResponseEntity.status(400).body(error);
         } catch (NotFoundResourceException e){
             error.setError(e.getMessage());
