@@ -33,12 +33,12 @@ public class Student {
     @Past
     private LocalDate birthDate;
 
+    @NotBlank
+    private List<Languages> languages;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "addressId")
     private Address address;
-
-    @NotBlank
-    private List<Languages> languages;
 
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonIgnore

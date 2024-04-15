@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -19,14 +20,14 @@ public class Course {
 
     @NotBlank
     @Size(max = 120, min = 5)
-    private String name;
+    private String title;
 
     @NotNull
     @Size(max = 350, min = 15)
     private String description;
 
     @NotNull
-    private Date startDate;
+    private LocalDate startDate;
 
     @ManyToMany
     @JoinTable(
@@ -55,17 +56,17 @@ public class Course {
     public Course() {
     }
 
-    public Course(Long id, String name, String description, Date startDate) {
+    public Course(Long id, String title, String description, LocalDate startDate) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.startDate = startDate;
     }
 
-    public Course(Long id, String name, String description, Date startDate, List<Professors> professors,
+    public Course(Long id, String title, String description, LocalDate startDate, List<Professors> professors,
                   List<Student> students, List<Modules> modules) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.professors = professors;
@@ -81,12 +82,12 @@ public class Course {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -97,11 +98,11 @@ public class Course {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 

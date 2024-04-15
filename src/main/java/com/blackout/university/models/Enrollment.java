@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table
@@ -24,12 +24,12 @@ public class Enrollment {
 
     @NotNull
     @PastOrPresent
-    private LocalDateTime enrollmentDate;
+    private LocalDate enrollmentDate;
 
     public Enrollment() {
     }
 
-    public Enrollment(Long id, Student student, Course course, LocalDateTime enrollmentDate) {
+    public Enrollment(Long id, Student student, Course course, LocalDate enrollmentDate) {
         this.id = id;
         this.student = student;
         this.course = course;
@@ -60,11 +60,11 @@ public class Enrollment {
         this.course = course;
     }
 
-    public LocalDateTime getEnrollmentDate() {
+    public LocalDate getEnrollmentDate() {
         return enrollmentDate;
     }
 
-    public void setEnrollmentDate(LocalDateTime enrollmentDate) {
+    public void setEnrollmentDate(LocalDate enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
 }
